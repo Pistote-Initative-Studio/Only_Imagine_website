@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Only Imagine</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="scroll-wrapper">
+    <div class="container">
+      <div class="left">
+        <img src="/assets/logo.png" alt="Only Imagine logo" class="logo" />
+      </div>
+      <div class="right">
+        <div class="video-layer">
+          <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://vz-6fdd2f7c-a2d3-4e93-86f7-c49d3a918645.b-cdn.net/1ad4eafd-8d69-4e0a-9773-0dc376f6410a/1080p.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const wrapper = document.querySelector('.scroll-wrapper');
+      const videoLayer = document.querySelector('.video-layer');
+
+      const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+      const updateVideoOffset = () => {
+        if (!wrapper || !videoLayer) {
+          return;
+        }
+
+        const rect = wrapper.getBoundingClientRect();
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        const availableScroll = rect.height - viewportHeight;
+
+        if (availableScroll <= 0) {
+          videoLayer.style.transform = 'translateY(0)';
+          return;
+        }
+
+        const progress = clamp(-rect.top / availableScroll, 0, 1);
+        videoLayer.style.transform = `translateY(${progress * -100}%)`;
+      };
+
+      updateVideoOffset();
+      window.addEventListener('scroll', updateVideoOffset, { passive: true });
+      window.addEventListener('resize', updateVideoOffset);
+    });
+  </script>
+</body>
+</html>
