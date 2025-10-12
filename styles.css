@@ -11,7 +11,8 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(to bottom, var(--ivory) 70%, var(--royal-green) 100%);
+  background: linear-gradient(to right, var(--ivory) 70%, var(--royal-green) 100%);
+  background-attachment: fixed;
   font-family: "Inter", "Segoe UI", sans-serif;
   color: #0f0f0f;
   overflow-x: hidden;
