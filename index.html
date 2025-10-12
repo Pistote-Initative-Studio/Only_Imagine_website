@@ -27,6 +27,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const wrapper = document.querySelector('.scroll-wrapper');
       const videoLayer = document.querySelector('.video-layer');
+      const heroVideo = document.querySelector('.hero-video');
 
       const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
@@ -47,6 +48,18 @@
         const progress = clamp(-rect.top / availableScroll, 0, 1);
         videoLayer.style.transform = `translateY(${progress * -100}%)`;
       };
+
+      const revealVideo = () => {
+        heroVideo?.classList.add('is-visible');
+      };
+
+      if (heroVideo) {
+        if (heroVideo.readyState >= 2) {
+          revealVideo();
+        } else {
+          heroVideo.addEventListener('loadeddata', revealVideo, { once: true });
+        }
+      }
 
       updateVideoOffset();
       window.addEventListener('scroll', updateVideoOffset, { passive: true });
