@@ -11,11 +11,18 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: linear-gradient(to right, var(--ivory) 70%, var(--royal-green) 100%);
-  background-attachment: fixed;
+  background: none;
   font-family: "Inter", "Segoe UI", sans-serif;
   color: #0f0f0f;
   overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to right, var(--ivory) 50%, var(--royal-green) 50%);
+  z-index: -1;
 }
 
 .scroll-wrapper {
@@ -99,8 +106,7 @@ body {
 .below {
   position: relative;
   height: 120vh;
-  background: linear-gradient(to right, rgba(255, 255, 240, 0.95) 0%, rgba(255, 255, 240, 0.75) 20%,
-      var(--royal-green) 55%, #002811 100%);
+  background: none;
 }
 
 @media (max-width: 1080px) {
