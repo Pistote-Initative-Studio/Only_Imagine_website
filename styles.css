@@ -1,7 +1,8 @@
 :root {
   color-scheme: light;
-  --ivory: #f9f7f1;
-  --green: #4caf50;
+  --ivory: #fffff0;
+  --royal-green: #014421;
+  --blend-width: clamp(220px, 33vw, 520px);
 }
 
 * {
@@ -10,15 +11,16 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
   background-color: var(--ivory);
   font-family: "Inter", "Segoe UI", sans-serif;
-  min-height: 100vh;
+  color: #0f0f0f;
 }
 
 .scroll-wrapper {
   position: relative;
-  height: 200vh;
-  background: linear-gradient(90deg, var(--ivory) 0%, var(--ivory) 50%, var(--green) 100%);
+  min-height: 220vh;
+  background: linear-gradient(180deg, var(--ivory) 0%, var(--royal-green) 100%);
 }
 
 .container {
@@ -40,20 +42,20 @@ body {
 .left {
   background: var(--ivory);
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 4vw;
+  justify-content: center;
+  padding: clamp(2rem, 6vw, 8rem);
 }
 
 .logo {
-  width: min(320px, 60%);
+  width: clamp(180px, 40vw, 360px);
   max-width: 100%;
   height: auto;
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0 18px 45px rgba(1, 20, 12, 0.2));
 }
 
 .right {
-  background: var(--green);
+  background: var(--royal-green);
   overflow: hidden;
 }
 
@@ -61,7 +63,7 @@ body {
   position: absolute;
   inset: 0;
   transform: translateY(0);
-  transition: transform 160ms ease-out;
+  transition: transform 200ms ease-out;
   will-change: transform;
   z-index: 1;
 }
@@ -69,9 +71,8 @@ body {
 .hero-video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
-  filter: saturate(1.1);
+  object-fit: cover;
 }
 
 .container::after {
@@ -79,32 +80,58 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: calc(50% - 17.5vw);
-  width: 35vw;
+  left: calc(50% - var(--blend-width) / 2);
+  width: var(--blend-width);
   pointer-events: none;
   z-index: 2;
   background: linear-gradient(
     90deg,
-    rgba(249, 247, 241, 0) 0%,
-    rgba(249, 247, 241, 0.65) 45%,
-    rgba(249, 247, 241, 0.85) 55%,
-    rgba(76, 175, 80, 0) 100%
+    rgba(255, 255, 240, 0) 0%,
+    rgba(255, 255, 240, 0.72) 44%,
+    rgba(255, 255, 240, 0.88) 50%,
+    rgba(1, 68, 33, 0) 100%
   );
-  backdrop-filter: blur(24px);
+  backdrop-filter: blur(30px);
+  mix-blend-mode: normal;
+}
+
+.below {
+  position: relative;
+  height: 120vh;
+  background: var(--royal-green);
+}
+
+.below::before {
+  content: "";
+  position: absolute;
+  top: -30vh;
+  left: 0;
+  right: 0;
+  height: 30vh;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 240, 0.75) 0%,
+    rgba(1, 68, 33, 0) 70%
+  );
+  filter: blur(30px);
+  opacity: 0.8;
 }
 
 @media (max-width: 1080px) {
-  .container::after {
-    left: calc(50% - 22.5vw);
-    width: 45vw;
-    backdrop-filter: blur(22px);
+  :root {
+    --blend-width: clamp(240px, 42vw, 520px);
+  }
+
+  .logo {
+    width: clamp(160px, 45vw, 320px);
   }
 }
 
 @media (max-width: 768px) {
   .scroll-wrapper {
-    height: 220vh;
-    background: linear-gradient(180deg, var(--ivory) 0%, var(--ivory) 50%, var(--green) 100%);
+    min-height: 240vh;
+    background: linear-gradient(180deg, var(--ivory) 0%, var(--ivory) 45%, var(--royal-green) 100%);
   }
 
   .container {
@@ -119,27 +146,24 @@ body {
   }
 
   .container::after {
+    top: calc(50% - 20vh);
+    bottom: auto;
     left: 0;
-    right: 0;
     width: 100%;
     height: 40vh;
-    top: calc(50% - 20vh);
     background: linear-gradient(
       180deg,
-      rgba(249, 247, 241, 0) 0%,
-      rgba(249, 247, 241, 0.6) 40%,
-      rgba(249, 247, 241, 0.85) 60%,
-      rgba(76, 175, 80, 0) 100%
+      rgba(255, 255, 240, 0) 0%,
+      rgba(255, 255, 240, 0.75) 48%,
+      rgba(255, 255, 240, 0.9) 55%,
+      rgba(1, 68, 33, 0) 100%
     );
+    backdrop-filter: blur(26px);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .video-layer {
     transition: none;
-  }
-
-  .hero-video {
-    animation: none;
   }
 }
