@@ -1,8 +1,3 @@
-:root {
-  color-scheme: light;
-  --ivory: #fffff0;
-}
-
 * {
   box-sizing: border-box;
 }
@@ -13,45 +8,38 @@ body {
   width: 100vw;
   margin: 0;
   overflow: hidden;
-  background-color: var(--ivory);
   font-family: "Inter", "Segoe UI", sans-serif;
   color: #0f0f0f;
 }
 
-.main-container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-.left-section,
-.video-section {
-  flex: 1 1 50%;
-}
-
-.left-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--ivory);
-}
-
-.logo {
-  width: min(75%, 450px);
-  max-width: 75%;
-  height: auto;
-  display: block;
-}
-
-.video-section {
+.video-background {
   position: relative;
-  overflow: hidden;
-  background-color: #000;
+  height: 100vh;
+  width: 100vw;
 }
 
 .hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
+  z-index: 1;
+}
+
+.logo-overlay {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+}
+
+.logo {
+  width: min(37.5vw, 450px);
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
