@@ -1,143 +1,45 @@
-:root {
-  color-scheme: light;
-  --ivory: #fffff0;
-  --royal-green: #014421;
-}
-
 * {
   box-sizing: border-box;
 }
 
+html,
 body {
+  height: 100vh;
+  width: 100vw;
   margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(to right, var(--ivory) 70%, var(--royal-green) 100%);
-  background-attachment: fixed;
+  overflow: hidden;
   font-family: "Inter", "Segoe UI", sans-serif;
   color: #0f0f0f;
-  overflow-x: hidden;
 }
 
-.scroll-wrapper {
+.video-background {
   position: relative;
-  min-height: 220vh;
-}
-
-.container {
-  position: sticky;
-  top: 0;
-  display: flex;
-  min-height: 100vh;
-  align-items: stretch;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.left,
-.right {
-  flex: 1 1 50%;
-  position: relative;
-}
-
-.left {
-  background: linear-gradient(to bottom, var(--ivory) 0%, rgba(255, 255, 240, 0.9) 75%,
-      rgba(255, 255, 240, 0.75) 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(2rem, 6vw, 8rem);
-}
-
-.logo {
-  width: min(60%, 360px);
-  max-width: 60%;
-  height: auto;
-  filter: drop-shadow(0 18px 45px rgba(1, 20, 12, 0.2));
-  display: block;
-  margin: 0 auto;
-}
-
-.right {
-  background: var(--royal-green);
-  overflow: hidden;
-  position: relative;
-}
-
-.video-layer {
-  position: absolute;
-  inset: 0;
-  transform: translateY(0);
-  transition: transform 200ms ease-out;
-  will-change: transform;
-  z-index: 1;
+  height: 100vh;
+  width: 100vw;
 }
 
 .hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
-  display: block;
+  height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 800ms ease-in-out;
-  position: relative;
   z-index: 1;
 }
 
-.hero-video.is-visible {
-  opacity: 1;
-}
-
-.right::after {
-  content: "";
+.logo-overlay {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to left, transparent 60%, var(--ivory) 100%);
-  pointer-events: none;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2;
+  text-align: center;
 }
 
-.below {
-  position: relative;
-  height: 120vh;
-  background: linear-gradient(to bottom, rgba(255, 255, 240, 0.95) 0%, rgba(255, 255, 240, 0.75) 20%,
-      var(--royal-green) 55%, #002811 100%);
-}
-
-@media (max-width: 1080px) {
-  .logo {
-    width: min(65%, 320px);
-    max-width: 65%;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .left,
-  .right {
-    flex: unset;
-    width: 100%;
-    min-height: 60vh;
-  }
-
-  .hero-video {
-    height: 100%;
-    min-height: 60vh;
-  }
-
-  .right::after {
-    background: linear-gradient(to top, transparent 55%, rgba(255, 255, 240, 0.95) 100%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .video-layer {
-    transition: none;
-  }
-
-  .hero-video {
-    transition: none;
-  }
+.logo {
+  width: min(37.5vw, 450px);
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
