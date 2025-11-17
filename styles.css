@@ -43,3 +43,17 @@ body {
   height: auto;
   display: block;
 }
+
+/* ----------------------------------------------------
+   MOBILE LOGO BOOST
+   Makes the logo bigger on mobile (≤ 600px wide)
+---------------------------------------------------- */
+@media (max-width: 600px) {
+  .logo {
+    width: min(90vw, 500px); /* Increase as needed */
+  }
+
+  .logo-overlay {
+    top: 40%; /* Slightly lower for better composition */
+  }
+}
