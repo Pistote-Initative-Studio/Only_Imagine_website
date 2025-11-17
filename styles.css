@@ -50,7 +50,7 @@ body {
 ---------------------------------------------------- */
 @media (max-width: 600px) {
   .logo {
-    width: min(90vw, 600px); /* Increase as needed */
+    width: min(80vw, 600px); /* Increase as needed */
     max-width: 90vw;
   }
 
