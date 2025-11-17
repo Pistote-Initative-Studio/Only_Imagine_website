@@ -38,7 +38,7 @@ body {
 }
 
 .logo {
-  width: min(37.5vw, 450px);
+  width: min(55vw, 600px);
   max-width: 100%;
   height: auto;
   display: block;
